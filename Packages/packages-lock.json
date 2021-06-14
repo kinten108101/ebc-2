@@ -1,14 +1,14 @@
 {
   "dependencies": {
     "com.google.xr.cardboard": {
-      "version": "https://github.com/joaoborks/cardboard-xr-plugin.git",
+      "version": "https://github.com/googlevr/cardboard-xr-plugin.git",
       "depth": 0,
       "source": "git",
       "dependencies": {
         "com.unity.xr.management": "3.2.9",
         "com.unity.xr.legacyinputhelpers": "2.1.4"
       },
-      "hash": "38cb0047bbc1b5a56c113164c9915fe2d22bc664"
+      "hash": "48e5eafae7d60bf65b5be9435a70b7234a474062"
     },
     "com.unity.collab-proxy": {
       "version": "1.5.7",
@@ -118,7 +118,7 @@
     },
     "com.unity.subsystemregistration": {
       "version": "1.0.6",
-      "depth": 2,
+      "depth": 1,
       "source": "registry",
       "dependencies": {},
       "url": "https://packages.unity.com"
@@ -175,8 +175,8 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.management": {
-      "version": "4.0.1",
-      "depth": 1,
+      "version": "4.0.6",
+      "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.unity.modules.subsystems": "1.0.0",
