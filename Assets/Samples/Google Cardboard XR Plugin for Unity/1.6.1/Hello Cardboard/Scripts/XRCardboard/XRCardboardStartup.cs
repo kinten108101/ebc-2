@@ -41,6 +41,7 @@ public class XRCardboardStartup : MonoBehaviour
         {
             Api.ScanDeviceParams();
         }
+        
     }
 
     /// <summary>
@@ -50,6 +51,7 @@ public class XRCardboardStartup : MonoBehaviour
     {
         if (Api.IsGearButtonPressed)
         {
+            
             Api.ScanDeviceParams();
         }
 
