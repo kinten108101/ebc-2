@@ -4,10 +4,6 @@
     package="com.unity3d.player"
     xmlns:tools="http://schemas.android.com/tools"
     android:installLocation="preferExternal">
-
-    <uses-sdk
-        android:minSdkVersion="16"
-        android:targetSdkVersion="28" />
         
     <supports-screens
         android:smallScreens="true"
