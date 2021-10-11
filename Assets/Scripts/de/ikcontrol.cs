@@ -188,6 +188,7 @@ public class ikcontrol : MonoBehaviour
             //Vector3 lastVector = Quaternion.FromToRotation(lastParentDirection,parentDirection);
             Quaternion delta = Quaternion.FromToRotation(lastParentDirection,parentDirection);
             Vector3 lastVector = delta*lastDirection[i];
+            
             Vector3 vector = direction;
             //if (direction.magnitude < 0.1f) direction = parentDirection;
             Quaternion rotation = Quaternion.FromToRotation(lastVector,vector);
@@ -199,11 +200,11 @@ public class ikcontrol : MonoBehaviour
                 Debug.Log("angle of local rotation is:"+Quaternion.Angle(rotationPlaceholder,rotationPlaceholder*lastLocalRotation));
                 Debug.Log("rotation is:"+rotation);
                 Debug.Log("angle of rotation is:"+Quaternion.Angle(rotationPlaceholder*lastLocalRotation,rotationPlaceholder*lastLocalRotation*rotation));
-                
+
                 
             }
             Quaternion placeholder = rotationPlaceholder;
-                rotationPlaceholder = rotationPlaceholder*lastLocalRotation*rotation;
+            rotationPlaceholder = rotationPlaceholder*lastLocalRotation*rotation;
             
             //if (one==rotationPlaceholder && rotation != new Quaternion(0f,0f,0f,1f)) throw new UnityException("ref error");
             //realBone[i].rotation = rotationPlaceholder;   
@@ -318,6 +319,7 @@ public class ikcontrol : MonoBehaviour
         Handles.color = Color.red;
         Vector3 positiona = new Vector3(5f,5f,5f);
         Handles.DrawWireCube(targetPosition+positiona, new Vector3(2f,2f,2f));
+        
     }
 #endif
 }

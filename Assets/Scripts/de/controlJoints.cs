@@ -148,9 +148,9 @@ public class controlJoints : MonoBehaviour
                     currentVector = joint[j].transform.position - joint[j+1].transform.position;
                     currentDistance = Vector3.Magnitude(currentVector);
                     joint[j].transform.position = (currentVector.normalized)*(l[j])+joint[j+1].transform.position;
-                    //limb[j].transform.position = (currentVector.normalized)*(l[j]/(2))+joint[j+1].transform.position;
+                    limb[j].transform.position = (currentVector.normalized)*(l[j]/(2))+joint[j+1].transform.position;
                     //limb[j].transform.forward = Vector3.RotateTowards(joint[j+1].transform.position);
-                    //limb[j].transform.forward = currentVector;
+                    limb[j].transform.forward = currentVector;
                     
                     ResolvePole();
                     //The part below is devoted to polarization. This is not optimal.
@@ -163,8 +163,8 @@ public class controlJoints : MonoBehaviour
                     currentVector = joint[j].transform.position - joint[j-1].transform.position;
                     currentDistance = Vector3.Magnitude(currentVector);
                     joint[j].transform.position = (currentVector.normalized)*(l[j-1])+joint[j-1].transform.position;
-                    //limb[j-1].transform.position = (currentVector.normalized)*(l[j-1]/(2))+joint[j-1].transform.position;
-                    //limb[j-1].transform.forward = currentVector;
+                    limb[j-1].transform.position = (currentVector.normalized)*(l[j-1]/(2))+joint[j-1].transform.position;
+                    limb[j-1].transform.forward = currentVector;
                     ResolvePole();
                     /*
                     if (pole != null) {
