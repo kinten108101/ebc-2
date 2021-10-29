@@ -12,8 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d5a0573e1760842b39c9f418c64355, type: 3}
   m_Name: XRCardboardInputSettings
   m_EditorClassIdentifier: 
-  scanParameters: 1
   clickInputName: Submit
-  gazeTimeInSeconds: 1
-  forwardMultiplier: 1.5
-  sideMultiplier: 1.1
+  gazeTimeInSeconds: 2

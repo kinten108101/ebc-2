@@ -23,7 +23,10 @@ public class XRCardboardInputModule : PointerInputModule
     PointerEventData pointerEventData;
     GameObject currentTarget;
     float currentTargetClickTime = float.MaxValue;
-    bool hovering;
+    private bool hovering;
+    public bool getHoveringState(){
+        return hovering;
+    }
 
     public override void Process()
     {
@@ -70,22 +73,18 @@ public class XRCardboardInputModule : PointerInputModule
             var gazeTime = settings.GazeTime;
             currentTarget = handler;
             currentTargetClickTime = Time.realtimeSinceStartup + gazeTime;
-            //reset hovering state
-            if (hovering) StopHovering();
+            if (hovering)
+                StopHovering();
             hovering = true;
             onStartHover?.Invoke(gazeTime);
         }
-        // add touch count. For some reason this is not present in XRCardboard. My theory is that the input module is different, ported from the old Cardboard SDK.
-        if (Time.realtimeSinceStartup > currentTargetClickTime || Input.GetButtonDown(settings.ClickInput) || (Input.touchCount==1 && Input.touches[0].phase == TouchPhase.Began))
+
+        if ((Time.realtimeSinceStartup > currentTargetClickTime || Input.GetButtonDown(settings.ClickInput)) || (Input.touchCount==1 && Input.touches[0].phase == TouchPhase.Began))
         {
-            
             ExecuteEvents.ExecuteHierarchy(currentTarget, pointerEventData, ExecuteEvents.pointerClickHandler);
             currentTargetClickTime = float.MaxValue;
             onClick?.Invoke();
             StopHovering();
-        }
-        else {
-            
         }
     }
 

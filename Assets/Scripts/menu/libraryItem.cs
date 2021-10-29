@@ -12,12 +12,15 @@ public class libraryItem : MonoBehaviour, IPointerClickHandler
     public GameObject GetObj(){
         return obj;
     }
-    
-    [SerializeField]private GameObject mPlayerManager;
-    
+
+    [SerializeField]private GameObject mPlayer;
+    private playerManager mManager;
+    void Awake() {
+        mManager = mPlayer.GetComponent<playerManager>();
+    }
     public void OnPointerClick(PointerEventData p) {
-        Vector3 pos = mPlayerManager.GetComponent<playerManager>().GetCursorPosition();
-        Instantiate(obj,pos,mPlayerManager.transform.rotation);
+        Vector3 pos = mManager.playerView.GetCursorPosition();
+        Instantiate(obj,pos,mPlayer.transform.rotation);
     }
     
 }

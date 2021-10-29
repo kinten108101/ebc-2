@@ -1,4 +1,4 @@
-#if !UNITY_EDITOR
+﻿#if !UNITY_EDITOR
 using Google.XR.Cardboard;
 using UnityEngine.XR.Management;
 #endif
@@ -17,6 +17,9 @@ public class XRCardboardController : MonoBehaviour
     GameObject standardGroup = default;
     [SerializeField]
     XRCardboardInputModule vrInputModule = default;
+    public XRCardboardInputModule getVrInputModule() {
+        return vrInputModule;
+    }
     [SerializeField]
     StandaloneInputModule standardInputModule = default;
     [SerializeField, Range(.05f, 2)]
@@ -161,7 +164,7 @@ public class XRCardboardController : MonoBehaviour
     void SimulateDrag()
     {
         var mousePos = Input.mousePosition;
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             var delta = mousePos - lastMousePos;
             dragDegrees.x += delta.y * dragRate;
