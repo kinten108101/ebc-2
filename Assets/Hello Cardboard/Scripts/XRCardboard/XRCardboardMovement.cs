@@ -15,19 +15,12 @@ public class XRCardboardMovement : MonoBehaviour
     } 
     
     [SerializeField]private GameObject playerModel;
-    private Camera mainCamera;
-    private playerManager mManager;
+    private Camera xrCam;
+
     // Update is called once per frame
-    void Start(){
-        
-        
-        mManager = this.GetComponent<playerManager>();
-        if (!mManager) throw new UnityException("Camera in PlayerManager is empty.");
-        // remember that this is a reference (transform is a component)
-        mainCamera = mManager.Camera;
-        if (mainCamera == null) throw new UnityException("Camera in PlayerManager is empty.");
-        
-        
+    void Awake(){
+        xrCam = GetComponent<XrManager>().xrCam;
+        if (xrCam == null) throw new UnityException("Camera in xrManager is empty.");
     }
     void FixedUpdate()
     {
@@ -36,9 +29,9 @@ public class XRCardboardMovement : MonoBehaviour
         }
         else keyWS = 0;
         
-        this.transform.position += (Vector3.Scale(mainCamera.transform.forward, new Vector3(1f,0f,1f)).normalized
+        this.transform.position += (Vector3.Scale(xrCam.transform.forward, new Vector3(1f,0f,1f)).normalized
             *key_ws*settings.forwardSpeed 
-            + mainCamera.transform.right * key_ad * settings.sideSpeed)
+            + xrCam.transform.right * key_ad * settings.sideSpeed)
             *Time.deltaTime;
         
     }

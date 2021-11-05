@@ -7,17 +7,18 @@ using UnityEngine.UI;
 public class item_0000 : MonoBehaviour
 {
     [SerializeField]private GameObject mPlayer;
-    private playerManager mManager;
+    private PlayerManager playerManager;
+    //private VrView vrView;
     private Vector3 camForward;
     private bool pass = false;
     [SerializeField]private Text mDebugText;
     void Awake() {
-         mManager = mPlayer.GetComponent<playerManager>();
+         playerManager = mPlayer.GetComponent<PlayerManager>();
     }
     void Update()
     {
         if (pass) {
-            Vector3 hitpos = mManager.playerView.getHit().position;
+            Vector3 hitpos = playerManager.xrManager.xrView.getHit().position;
             Vector3 newForward;
             if (hitpos.x == 0f && hitpos.y == 0f && hitpos.y == 0f) {
                 hitpos = this.transform.right + this.transform.position;

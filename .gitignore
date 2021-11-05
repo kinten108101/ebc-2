@@ -10,6 +10,16 @@
 /[Ll]ogs/
 /[Mm]emoryCaptures/
 
+# plugin belongs to another branch
+AndroidPluginTest/
+click-here-to-update.sh
+
+# vscode remnants
+.vscode
+
+# sulbime remnants
+*.sublime*
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 

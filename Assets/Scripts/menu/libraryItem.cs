@@ -13,14 +13,14 @@ public class libraryItem : MonoBehaviour, IPointerClickHandler
         return obj;
     }
 
-    [SerializeField]private GameObject mPlayer;
-    private playerManager mManager;
+    
+    private XrManager xrManager;
     void Awake() {
-        mManager = mPlayer.GetComponent<playerManager>();
+        
     }
     public void OnPointerClick(PointerEventData p) {
-        Vector3 pos = mManager.playerView.GetCursorPosition();
-        Instantiate(obj,pos,mPlayer.transform.rotation);
+        Vector3 pos = xrManager.xrView.GetCursorPosition();
+        Instantiate(obj,pos,xrManager.transform.rotation);
     }
     
 }

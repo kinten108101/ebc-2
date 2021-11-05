@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class playerView : MonoBehaviour
+public class XrView : MonoBehaviour
     {
         // Setting the cursor
         //private bool hovering;
@@ -15,38 +15,51 @@ public class playerView : MonoBehaviour
         // init
 
         // Start vs Awake: https://gamedevbeginner.com/start-vs-awake-in-unity/
-        private playerManager mManager;
+        private XrManager xrManager;
         private void Awake() {
-            mManager = GetComponent<playerManager>();
+            xrManager = GetComponent<XrManager>();
         }
 
         public Vector3 GetCursorPosition() {
-            if (mManager.TargetCursor) return mManager.TargetCursor.transform.position;
+            if (xrManager.TargetCursor) return xrManager.TargetCursor.transform.position;
             else return new Vector3(0f,0f,0f);
         }
         public Vector3Extra getHit() {
-            if (mManager.Camera!=null){
+            if (xrManager.xrCam!=null){
                 RaycastHit hit;
-                if (Physics.Raycast(mManager.Camera.transform.position,mManager.Camera.transform.forward,out hit,mManager.CastMaxDistance,mManager.CastLayerMask )) {
+                if (Physics.Raycast(xrManager.xrCam.transform.position,xrManager.xrCam.transform.forward,out hit,xrManager.castMaxLength,xrManager.castLayer )) {
                     //Debug.Log(hit.transform.position);
                     return new Vector3Extra(hit.point, true);
                     }
                 else {
-                    Vector3 hitNear = mManager.Camera.transform.forward*mManager.CastMaxDistance + mManager.Camera.transform.position;
+                    Vector3 hitNear = xrManager.xrCam.transform.forward*xrManager.castMaxLength + xrManager.xrCam.transform.position;
                     return new Vector3Extra(hitNear, false);
                     }
             }
             else throw new UnityException("Camera is unassigned");
         }
+        public Rigidbody getHitRb() {
+            if (xrManager.xrCam!=null){
+                RaycastHit hit;
+                if (Physics.Raycast(xrManager.xrCam.transform.position,xrManager.xrCam.transform.forward,out hit,xrManager.castMaxLength,xrManager.castLayer )) {
+                    //Debug.Log(hit.transform.position);
+                    return hit.rigidbody;
+                    }
+                else {
+                    return null;
+                    }
+            }
+            else throw new UnityException("Camera is unassigned");
+        }
         public Vector3 getCameraPosition() {
-            if (mManager.Camera!=null) {
-                return mManager.Camera.transform.position;
+            if (xrManager.xrCam!=null) {
+                return xrManager.xrCam.transform.position;
             }
             else throw new UnityException("Camera is unassigned.");
         }
         public Vector3 getCameraForward() {
-            if (mManager.Camera!=null) {
-                return mManager.Camera.transform.forward;
+            if (xrManager.xrCam!=null) {
+                return xrManager.xrCam.transform.forward;
             }
             else throw new UnityException("Camera is unassigned.");
         }
@@ -62,20 +75,20 @@ public class playerView : MonoBehaviour
             if (Input.touchCount==1 && Input.touches[0].phase == TouchPhase.Began)
     #endif
             {
-                switch (mManager.XrCursorState){
+                switch (xrManager.xrCursorState){
                     case XrCursor.SELECTED:
-                        mManager.XrCursorState = XrCursor.UNSELECTED;
+                        xrManager.xrCursorState = XrCursor.UNSELECTED;
                         break;
                     case XrCursor.UNSELECTED:
-                        mManager.XrCursorState = XrCursor.SELECTED;
+                        xrManager.xrCursorState = XrCursor.SELECTED;
                         break;
                 }
             }
-            switch (mManager.XrCursorState){
+            switch (xrManager.xrCursorState){
                 case XrCursor.SELECTED:
                     break;
                 case XrCursor.UNSELECTED:
-                    mManager.TargetCursor.transform.position = getHit().position;
+                    xrManager.TargetCursor.transform.position = getHit().position;
                     break;
             }
             
