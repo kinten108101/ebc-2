@@ -11,7 +11,8 @@
 /[Mm]emoryCaptures/
 
 # plugin belongs to another branch
-AndroidPluginTest/
+/AndroidPluginTest/
+/bluetoothplugin/
 click-here-to-update.sh
 
 # vscode remnants
