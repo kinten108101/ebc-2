@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
+using EBC.Player.Core;
 
 public class item_0000 : MonoBehaviour
 {
@@ -18,7 +19,7 @@ public class item_0000 : MonoBehaviour
     void Update()
     {
         if (pass) {
-            Vector3 hitpos = playerManager.xrManager.xrView.getHit().position;
+            Vector3 hitpos = playerManager.playerControllerManager.xrManager.xrView.getHit().position;
             Vector3 newForward;
             if (hitpos.x == 0f && hitpos.y == 0f && hitpos.y == 0f) {
                 hitpos = this.transform.right + this.transform.position;

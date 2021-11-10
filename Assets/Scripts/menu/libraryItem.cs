@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
+using EBC.Player.Controller.Core;
 public class libraryItem : MonoBehaviour, IPointerClickHandler
 {
     public int id;

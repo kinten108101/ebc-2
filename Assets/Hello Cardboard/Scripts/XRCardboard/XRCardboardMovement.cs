@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using EBC.Player.Controller.Core;
 
 public class XRCardboardMovement : MonoBehaviour
 {
@@ -14,13 +15,14 @@ public class XRCardboardMovement : MonoBehaviour
         }
     } 
     
-    [SerializeField]private GameObject playerModel;
-    private Camera xrCam;
+    private Transform xrRigTransform;
+    private Transform xrCamTransform;
 
     // Update is called once per frame
     void Awake(){
-        xrCam = GetComponent<XrManager>().xrCam;
-        if (xrCam == null) throw new UnityException("Camera in xrManager is empty.");
+        xrRigTransform = GetComponent<Transform>();
+        xrCamTransform = GetComponent<XrManager>().xrCam.GetComponent<Transform>();
+        if (xrCamTransform == null) Debug.Log("CameraTransform in xrManager is empty.",this);
     }
     void FixedUpdate()
     {
@@ -29,9 +31,9 @@ public class XRCardboardMovement : MonoBehaviour
         }
         else keyWS = 0;
         
-        this.transform.position += (Vector3.Scale(xrCam.transform.forward, new Vector3(1f,0f,1f)).normalized
+        xrRigTransform.position += (Vector3.Scale(xrCamTransform.forward, new Vector3(1f,0f,1f)).normalized
             *key_ws*settings.forwardSpeed 
-            + xrCam.transform.right * key_ad * settings.sideSpeed)
+            + xrCamTransform.right * key_ad * settings.sideSpeed)
             *Time.deltaTime;
         
     }

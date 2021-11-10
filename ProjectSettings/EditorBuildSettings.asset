@@ -12,4 +12,5 @@ EditorBuildSettings:
     path: Assets/Hello Cardboard/Scenes/HelloCardboard-Full.unity
     guid: dee7b7bee63ec95468620aab2f0fdf01
   m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: 66958a1a06d9519c593940ad3a33d11a, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 79ec5add499205b4fbc9bca7b7850b33, type: 2}
