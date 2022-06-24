@@ -1,0 +1,11 @@
+[default]
+name=Default
+runtime=host
+toolchain=default
+config-opts=
+run-opts=
+prefix=/home/kinten/.cache/gnome-builder/install/simlab-unity/host
+app-id=
+postbuild=
+prebuild=
+default=true

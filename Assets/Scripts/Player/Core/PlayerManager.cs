@@ -10,9 +10,6 @@ namespace EBC.Player.Core {
 
         // for now defaultCameraMode is an initating value, not a variable so no need for high security. Ofc things may change once we consider multiplayer. For example, having only defualtCameraMode assumes that a new player will join with the prefered camera mode in the settings instead of a continuation of their last camera mode. 
         
-        
-        
-
         [Header("Camerawork")]
         public PlayerViewmode defaultCameraMode;
         // to prevent hierachial issues, implement an additional birdeye camera
@@ -63,6 +60,7 @@ namespace EBC.Player.Core {
         }
         void Start() {
             CurrentItemID = StartupItemID;
+            
             
         }
         void itemUpdate() {
